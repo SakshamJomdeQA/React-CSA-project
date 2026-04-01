@@ -14,7 +14,10 @@ export default function handler(request, response) {
     timestamp: new Date().toISOString(),
     source: "contentstack-cloud-function",
   };
-  
+
+  // Log payload for each incoming request to this function.
+  console.log(appInfo);
+
   response.status(200).json(appInfo);
 }
 
