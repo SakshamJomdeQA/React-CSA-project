@@ -40,6 +40,7 @@ const StreamTest: React.FC = () => {
       const contentType = response.headers.get('Content-Type') || '';
 
       if (contentType.includes('text/event-stream')) {
+        // True streaming — read body incrementally (AWS / platforms that pass headers through)
         const reader = response.body?.getReader();
         if (!reader) throw new Error('ReadableStream not available on response body');
 
@@ -63,8 +64,23 @@ const StreamTest: React.FC = () => {
           }
         }
       } else {
-        const data = await response.json();
-        setChunks(data.chunks ?? []);
+        // Platform buffered the response — read as text and sniff the format.
+        // GCP / Azure rewrite Content-Type when buffering, so the body may still
+        // be SSE-formatted even though the header no longer says so.
+        const text = await response.text();
+        if (text.trim().startsWith('data:')) {
+          const events = text.split('\n\n');
+          for (const event of events) {
+            const dataLine = event.split('\n').find((l) => l.startsWith('data: '));
+            if (!dataLine) continue;
+            const parsed = JSON.parse(dataLine.slice(6).trim());
+            if (parsed.done) continue;
+            setChunks((prev) => [...prev, parsed as Chunk]);
+          }
+        } else {
+          const data = JSON.parse(text);
+          setChunks(data.chunks ?? []);
+        }
       }
 
       setState('done');
