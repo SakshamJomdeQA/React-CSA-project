@@ -190,6 +190,118 @@
   color: #555;
 }
 
+/* Stream Test Page */
+.stream-controls {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.stream-btn {
+  padding: 0.75rem 1.5rem;
+  background-color: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.stream-btn:hover:not(:disabled) {
+  background-color: #4f46e5;
+}
+
+.stream-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.stream-btn--reset {
+  background-color: #6b7280;
+}
+
+.stream-btn--reset:hover:not(:disabled) {
+  background-color: #4b5563;
+}
+
+.stream-mode-badge {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  font-size: 1rem;
+}
+
+.stream-mode-badge--stream {
+  background-color: #d1fae5;
+  border-left: 4px solid #10b981;
+  color: #065f46;
+}
+
+.stream-mode-badge--buffer {
+  background-color: #fef3c7;
+  border-left: 4px solid #f59e0b;
+  color: #92400e;
+}
+
+.stream-error {
+  padding: 0.75rem 1rem;
+  background-color: #fee2e2;
+  border-left: 4px solid #ef4444;
+  border-radius: 8px;
+  color: #991b1b;
+  margin: 1rem 0;
+}
+
+.stream-chunks {
+  margin-top: 1.5rem;
+}
+
+.stream-chunk {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  border-left: 4px solid #6366f1;
+  animation: chunkFadeIn 0.3s ease;
+}
+
+@keyframes chunkFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.stream-chunk-id {
+  font-weight: 700;
+  color: #6366f1;
+  min-width: 2.5rem;
+}
+
+.stream-chunk-msg {
+  flex: 1;
+  color: #374151;
+}
+
+.stream-chunk-ts {
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+.stream-done {
+  padding: 0.75rem 1rem;
+  background-color: #d1fae5;
+  border-radius: 8px;
+  color: #065f46;
+  font-weight: 600;
+  margin-top: 1rem;
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   .page-container {
     padding: 1rem;

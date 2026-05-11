@@ -48,6 +48,13 @@ const Home: React.FC = () => {
             <li><Link to="/categories/books/items">Books → Items</Link></li>
           </ul>
         </div>
+
+        <div className="nav-group">
+          <h3>Cloud Functions:</h3>
+          <ul>
+            <li><Link to="/stream-test">HTTP Streaming Test</Link></li>
+          </ul>
+        </div>
       </div>
     </div>
   );

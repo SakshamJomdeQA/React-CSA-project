@@ -16,6 +16,7 @@ import DashboardAnalytics from './pages/DashboardAnalytics';
 import Category from './pages/Category';
 import CategoryItems from './pages/CategoryItems';
 import NotFound from './pages/NotFound';
+import StreamTest from './pages/StreamTest';
 
 function App() {
   return (
@@ -43,6 +44,9 @@ function App() {
           <Route path="/categories/:categoryName" element={<Category />}>
             <Route path="items" element={<CategoryItems />} />
           </Route>
+
+          {/* Streaming Test */}
+          <Route path="/stream-test" element={<StreamTest />} />
 
           {/* 404 Not Found Route */}
           <Route path="*" element={<NotFound />} />
